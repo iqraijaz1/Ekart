@@ -10,6 +10,11 @@ pipeline {
     }
 
     stages {
+        stage('Clean Workspace') {
+            steps {
+                cleanWs() // Cleans the entire Jenkins workspace
+            }
+        }
         stage('Git Checkout') {
             steps {
                 git branch: 'main', url: 'https://github.com/iqraijaz1/Ekart.git'
@@ -101,4 +106,3 @@ pipeline {
 }
 }
 }
-
