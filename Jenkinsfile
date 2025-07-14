@@ -95,7 +95,7 @@ pipeline {
                git config user.email "shadow7860@gmail.com"
                git config user.name "iqraijaz1"
                cat deployment.yaml
-               sed -i "s+iqraijaz/Ekart-manifest.*+iqraijaz/Ekart-manifest:${BUILD_NUMBER}+g" deployment.yaml
+               sed -i "s+iqraijaz/ekart.*+iqraijaz/ekart:${BUILD_NUMBER}+g" deployment.yaml
                git add -A
                git commit -m "Updated by Jenkins: ${BUILD_NUMBER}" || echo "No changes to commit"
                git push https://github.com/iqraijaz1/Ekart-manifest.git HEAD:main
@@ -106,3 +106,4 @@ pipeline {
 }
 }
 }
+
