@@ -93,7 +93,7 @@ pipeline {
                sed -i "s+iqraijaz/Ekart-manifest.*+iqraijaz/Ekart-manifest:${BUILD_NUMBER}+g" deployment.yaml
                git add -A
                git commit -m "Updated by Jenkins: ${BUILD_NUMBER}" || echo "No changes to commit"
-               git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/iqraijaz1/Ekart-manifest.git HEAD:main
+               git push https://github.com/iqraijaz1/Ekart-manifest.git HEAD:main
              '''
            }
          }
