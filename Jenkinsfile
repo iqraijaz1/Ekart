@@ -3,7 +3,7 @@ pipeline {
     tools {
         maven 'maven3'
         jdk 'jdk17'
-    
+        }  
     }
     environment {
         SCANNER_HOME= tool "sonar-scanner"
@@ -15,6 +15,7 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/iqraijaz1/Ekart.git'
             }
         }
+    }
         stage('Compile') {
             steps {
                 sh "mvn compile"
@@ -71,7 +72,7 @@ pipeline {
 
             }
         }
-        stage('manifest repo checkout') {
+           stage('manifest repo checkout') {
           steps {
              dir('Ekart-manifest') {
                   git branch: 'main', url: 'https://github.com/iqraijaz1/Ekart-manifest.git'
