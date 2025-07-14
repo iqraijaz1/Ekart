@@ -71,5 +71,30 @@ pipeline {
 
             }
         }
+        stage('manifest repo checkout') {
+          steps {
+             dir('Ekart-manifest') {
+                  git branch: 'main', url: 'https://github.com/iqraijaz1/Ekart-manifest.git'
+
+             }
+             
+          }
+         
+        }
+      stage('update tag push to manifest repo') {
+        steps {
+         dir('Ekart-manifest') {
+           withCredentials([usernamePassword(credentialsId: 'git-cred', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD')]) {
+             sh '''
+               git config user.email "shadow7860@gmail.com"
+               git config user.name "iqraijaz1"
+               cat deployment.yaml
+               sed -i "s+iqraijaz/Ekart-manifest.*+iqraijaz/Ekart-manifest:${BUILD_NUMBER}+g" deployment.yaml
+               git add -A
+               git commit -m "Updated by Jenkins: ${BUILD_NUMBER}" || echo "No changes to commit"
+               git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/iqraijaz1/Ekart-manifest.git HEAD:main
+             '''
+           }
+         }
     }
 }
