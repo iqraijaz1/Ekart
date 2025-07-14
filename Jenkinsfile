@@ -15,7 +15,7 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/iqraijaz1/Ekart.git'
             }
         }
-    }
+    
         stage('Compile') {
             steps {
                 sh "mvn compile"
@@ -98,7 +98,7 @@ pipeline {
            }
          }
     }
-  }
 }
-
+}
+}
 
