@@ -55,19 +55,19 @@ pipeline {
         stage('Dokcer Build & Tag Image') {
             steps {
      
-                   sh "docker build -t iqraijaz/ekart:latest -f docker/Dockerfile ."
+                   sh "docker build -t iqraijaz/ekart:${BUILD_NUMBER} -f docker/Dockerfile ."
                  
             }
         }
         stage('Trivy Scan') {
             steps {
-                sh "trivy image iqraijaz/ekart:latest > trivy-report.txt"
+                sh "trivy image iqraijaz/ekart:${BUILD_NUMBER} > trivy-report.txt"
             }
         }
           stage('Dokcer Push Image') {
             steps {
                     withDockerRegistry(credentialsId: 'docker-cred', url: 'https://index.docker.io/v1/') {
-                   sh "docker push iqraijaz/ekart:latest"
+                   sh "docker push iqraijaz/ekart:${BUILD_NUMBER}"
                  }
 
             }
