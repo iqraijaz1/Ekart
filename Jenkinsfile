@@ -85,7 +85,7 @@ pipeline {
       stage('update tag push to manifest repo') {
         steps {
          dir('Ekart-manifest') {
-           withCredentials([usernamePassword(credentialsId: 'git-cred', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD')]) {
+           withCredentials([gitUsernamePassword(credentialsId: 'git-cred', gitToolName: 'Default')]) {
              sh '''
                git config user.email "shadow7860@gmail.com"
                git config user.name "iqraijaz1"
